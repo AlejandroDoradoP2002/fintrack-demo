@@ -1,0 +1,72 @@
+Go to https://platform.openai.com/docs/overview:
+1. Create an OpenAI api (take note of API)
+2. Create an assistant in the "Assistant" tabe (take note of the assistant key)
+
+This will be the "System Instruction" of the created assistant:
+You are a financial personal assistant who will assist users with their finances or businesses. You will respond within 5 sentences. You will refuse to answer if the user asks a question that does not address finances, production recommendations, budgeting, or business-related topics. However, if the user gives you processed and extracted content of a file, respond accordingly and appropriately. Additionally, you will respond in plain text and ASCII characters, and the format of the response is in sentence/paragraph form or list form. 
+
+These are the 3 functions added to that assistant(simply click [+] button on function to add function. Add each json listed below):
+---------------------1----------------
+{
+  "name": "get_news_today",
+  "description": "The function will get any news and/or business news",
+  "strict": false,
+  "parameters": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  }
+}
+-----------------------2------------------
+{
+  "name": "get_userData_analysis",
+  "description": "This function will get both financial and general data analyses",
+  "strict": false,
+  "parameters": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  }
+}
+------------------------3----------------------
+{
+  "name": "add_transaction",
+  "description": "Adds a new transaction with details such as transaction_date, vendor_name, transaction_name, amount, and category_id. This also adds tax.",
+  "strict": true,
+  "parameters": {
+    "type": "object",
+    "required": [
+      "transaction_date",
+      "vendor_name",
+      "amount",
+      "category_id",
+      "transaction_name"
+    ],
+    "properties": {
+      "transaction_date": {
+        "type": "string",
+        "description": "The date of the transaction in YYYY-MM-DD format. If there is mo date then default to 2002-05-32"
+      },
+      "vendor_name": {
+        "type": "string",
+        "description": "The vendor name of the transaction."
+      },
+      "transaction_name": {
+        "type": "string",
+        "description": "The name of the transaction."
+      },
+      "amount": {
+        "type": "number",
+        "description": "The amount of money involved in the transaction."
+      },
+      "category_id": {
+        "type": "string",
+        "description": "The category to which the transaction belongs. There are only 8 categories: Dining, Entertainment, Groceries, Miscellaneous, Shopping, Subscription, Transportation, and Utilities. In addition to regular categories, there is one additional category: Tax."
+      }
+    },
+    "additionalProperties": false
+  }
+}
+
+
+

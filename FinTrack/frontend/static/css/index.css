@@ -1,0 +1,39 @@
+* {
+    font-family: 'Roboto', sans-serif;
+}
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #d8f8ff; /* Light background color for the entire page */
+}
+
+.center{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#main {
+    width: 100%;
+    min-height: 100vh; 
+}
+
+#app {
+    width: 100%;
+    min-height: 100vh;
+    
+}
+
+.blue1 {
+    color: #03045e;
+}
+
+.blue2 {
+    color: #0077b6; /* This is a darker blue for secondary elements */
+}
+
+.blue4 {
+    color: #90e0ef;
+}
