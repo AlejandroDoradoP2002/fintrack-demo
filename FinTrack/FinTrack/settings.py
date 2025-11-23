@@ -24,15 +24,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-y0@b=6z3%9i4oy+)nmb0kwzm=((1m*7ay95klf$t(ns@8wvbd+'
+DEBUG = True  # ok for a personal demo
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.onrender.com']
 
-ALLOWED_HOSTS = ['locahost', '127.0.0.1']
+CSRF_TRUSTED_ORIGINS = [
+    "http://127.0.0.1",
+    "http://localhost",
+    "https://*.onrender.com",
+]
 
-CSRF_TRUSTED_ORIGINS = ["http://127.0.0.1", "http://localhost"]
 
 #FOR NOW
 SESSION_COOKIE_SECURE = True
@@ -97,15 +98,11 @@ WSGI_APPLICATION = 'FinTrack.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.getenv("dbname"),
-        'USER': os.getenv("dbuser"),
-        'PASSWORD': os.getenv("dbpassword"),
-        'HOST': os.getenv("dbhost"),
-        'PORT': os.getenv("dbport"),
-
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
 
 
 # Password validation
@@ -143,6 +140,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+from pathlib import Path
+STATICFILES_DIRS = [BASE_DIR / "frontend" / "static"]
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
 
 # STATICFILES_DIRS = [os.path.join(BASE_DIR, "frontend", "static")]
 # 
